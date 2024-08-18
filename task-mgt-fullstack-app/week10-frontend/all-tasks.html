@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tasks</title>
+    <link rel="stylesheet" href="css/all-tasks.css">
+    <link rel="stylesheet" href="css/side.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+     <!-- Sidebar for large screens -->
+<div class="sidebar">
+    <div class="logo">
+        <ul class="menu">
+            <li>
+                <a href="dashboard.html"> 
+                <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html"> 
+                   <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="addTask.html"> 
+                    <i class="fas fa-plus"></i>
+                    <span>Add Task</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="all-tasks.html"> 
+                    <i class="fas fa-tasks"></i>
+                    <span>All Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="completed-tasks.html"> 
+                    <i class="fas fa-check"></i>
+                    <span>Completed Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="pending.html"> 
+                    <i class="fas fa-clock"></i>
+                    <span>Pending Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="in-progress.html"> 
+                    <i class="fas fa-spinner"></i>
+                    <span>In-progress</span>
+                </a>
+            </li>
+           
+            <li class="logout">
+                <a href="#"> <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Navbar for small screens -->
+
+<div class="navbar">
+    <div class="navbar-header">
+        <span>Menu</span>
+        <i class="fas fa-times close-icon"></i>
+    </div>
+    <ul class="nav-menu">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="addTask.html">Add Tasks</a></li>
+        <li><a href="all-tasks.html">All Tasks</a></li>
+        <li><a href="completed-tasks.html">Completed Tasks</a></li>
+        <li><a href="pending.html">Pending Tasks</a></li>
+        <li><a href="in-progress.html">In-Progress Tasks</a></li>
+        <li><a href="#">Logout</a></li>
+    </ul>
+</div>
+
+    
+  <!-- HEADER SECTION -->
+  <div class="main--content">
+<!--HEADER SECTION-->
+   <div class="header--wrapper">
+    <div class="header--title">
+        <h2>TaskFlow</h2>
+        <span>Dashboard</span>
+    </div>
+    <div class="user--info">
+        <div class="search--box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" placeholder="Search" class="search-input"/>
+        </div>
+        <div class="welcome-message">
+            Welcome Dami!
+        </div>
+    </div>
+</div>
+    <!--ALL TASKS TABLE-->
+    <div class="main-table-container">
+    <div class="filter-controls">
+        <select id="statusFilter">
+            <option value="all">All Statuses</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="PENDING">Pending</option>
+        </select>
+        <select id="priorityFilter">
+            <option value="all">All Priorities</option>
+            <option value="HIGH">High</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="LOW">Low</option>
+        </select>
+    </div>
+
+    <div id="spinner" class="spinner">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+    </div>
+
+    <div class="table-container" style="display: none;">
+        <table id="taskTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Priority Level</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+               
+                <tr>
+                    
+                        <td><a class="task-link" href="task-detail.html">  Stop Coker from going home</a></td> 
+                        <td>She must stay for good, and be a good girl</td>
+                        <td>02/05/2024</td>
+                        <td>Low</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="editTask.html" class="edit-btn">Edit</a>
+                            <a href="" class="delete-btn">Delete</a>
+                        </td>
+                    
+                    </tr>
+               
+            
+                <tr>
+                    <td><a class="task-link" href="task-detail.html">Build something</a></td>
+                    <td>Build an expenses tracker</td>
+                    <td>14/04/2024</td>
+                    <td>Medium</td>
+                    <td>Completed</td>
+                    <td>
+                        <a href="editTask.html" class="edit-btn">Edit</a>
+                        <a href="" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><Laundry class="task-link" href="task-detail.html">Laundry Duties</a></td>
+                    <td>Do the laundry before next week</td>
+                    <td>15/06/2024</td>
+                    <td>High</td>
+                    <td>Pending</td>
+                    <td>
+                        <a href="editTask.html" class="edit-btn">Edit</a>
+                        <a href="" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><Recommendation class="task-link" href="task-detail.html">Recommendation Feature</a></td>
+                    <td>Build the recommendation feature for Truthy App</td>
+                    <td>01/09/2024</td>
+                    <td>Low</td>
+                    <td>In Progress</td>
+                    <td>
+                        <a href="editTask.html" class="edit-btn">Edit</a>
+                        <a href="" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="task-link" href="task-detail.html">Front-end Design for TaskFlow</a></td>
+                    <td>Build the landing page and dashboard</td>
+                    <td>15/07/2024</td>
+                    <td>Medium</td>
+                    <td>In Progress</td>
+                    <td>
+                        <a href="editTask.html" class="edit-btn">Edit</a>
+                        <a href="" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+  </div>
+<script src="js/dashboard.js"></script>
+    <script src="js/alltasks.js"></script>
+</body>
+</html>

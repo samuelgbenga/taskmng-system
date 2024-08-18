@@ -1,0 +1,106 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Hamburger menu styles */
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100; /* Ensure it's above sidebar */
+    cursor: pointer;
+    color: #333;
+    font-size: 1.5rem;
+    display: none; /* Hidden by default on larger screens */
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    left: -250px; /* Initially hidden */
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #444;
+}
+
+.sidebar-header span {
+    font-size: 1.2rem;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    padding: 15px;
+    border-bottom: 1px solid #555;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    display: block;
+}
+
+.menu li a:hover {
+    background-color: #555;
+}
+
+.close-icon {
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+/* Main content */
+.content {
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block; /* Show hamburger menu on smaller screens */
+    }
+
+    .content {
+        margin-left: 50px; /* Make space for the hamburger menu */
+    }
+
+    .content.shifted {
+        margin-left: 250px; /* Move content to the right when sidebar opens */
+    }
+
+    .sidebar.active .close-icon {
+        display: block;
+    }
+
+    .sidebar.active .hamburger-menu {
+        display: none;
+    }
+}

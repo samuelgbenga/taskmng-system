@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | TaskFlow </title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!--Font Awesome CDN Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+    <!--THE NAVBAR FOR SMALL SCREEN-->
+    <!-- Hamburger Icon -->
+    <div class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+
+
+    <!--THE NAVBAR FOR SMALL SCREEN-->
+    
+    <div class="navbar">
+        <div class="navbar-header">
+            <span>Menu</span>
+            <i class="fas fa-times close-icon"></i>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="addTask.html">Add Tasks</a></li>
+            <li><a href="all-tasks.html">All Tasks</a></li>
+            <li><a href="completed-tasks.html">Completed Tasks</a></li>
+            <li><a href="pending.html">Pending Tasks</a></li>
+            <li><a href="in-progress.html">In-Progress Tasks</a></li>
+           
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- THE SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">
+            <ul class="menu">
+                <li class="active">
+                    <a href="#" > 
+                    <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html"> 
+                        
+                       <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="addTask.html"> 
+                        <i class="fas fa-plus"></i>
+                        <span>Add Task</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="all-tasks.html"> 
+                        <i class="fas fa-tasks"></i>
+                        <span>All Tasks</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="completed-tasks.html"> 
+                        <i class="fas fa-check"></i>
+                        <span>Completed Tasks</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pending.html"> 
+                        <i class="fas fa-clock"></i>
+                        <span>Pending Tasks</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="in-progress.html"> 
+                        <i class="fas fa-spinner"></i>
+                        <span>In-progress</span>
+                    </a>
+                </li>
+                
+               
+                <li class="logout">
+                    <a href="javascript:void(0);" id="logout-button"> <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!--THE MAIN CONTENT-->
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2>TaskFlow</h2>
+                <span>Dashboard</span>
+            </div>
+            <div class="user--info">
+                <div class="search--box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="task-search-input" placeholder="Search by title..."/>
+            </div>
+            <div class="welcome-message">
+                Welcome!
+            </div>
+            </div>
+        </div>
+
+        <!-- Created the spinner to display while fetching data -->
+        <!-- Spinner element -->
+        <div id="spinner" class="spinner" style="text-align: center; margin-top: 50px;">
+            <i class="fas fa-spinner fa-spin"></i> Loading...
+        </div>
+        
+        <!-- Created the below to wrap the card and table and display none until all fetch requests are done -->
+           <div class="sub-main--content" style="display: none;"> 
+                <!-- CARD SECTION -->
+                <div class="card">
+                    <h3 class="main--title">Task Overview</h3>
+                <div class="card--container">
+                <div class="card--wrapper">
+                    <!-- CARD ONE -->
+                
+                <!-- CARD TWO -->
+                    <div class="status--card light-red">
+                        <div class="card--header">
+                            <i class="fas icon dark-red" id="pending-count">0</i>
+                            <div class="status">
+                                <span class="status--value">PENDING</span>
+                                <span class="title"> Task </span>
+                            </div>
+                            <span class="card-detail">"Keep moving forward."
+                            </span>
+                        </div>
+                    </div>
+                <!-- CARD THREE -->
+                <div class="status--card light-green">
+                    <div class="card--header">
+                        <i class="fas icon dark-green" id="completed-count">0</i>
+                        <div class="status">
+                            <span class="status--value">COMPLETED</span>
+                            <span class="title"> Task </span>
+                        </div>
+                        <span class="card-detail">"Well done is better than well said."
+                        </span>
+                    </div>
+                </div>
+                <!-- CARD FOUR-->
+                <div class="status--card light-blue">
+                    <div class="card--header">
+                        <i class="fas icon dark-blue" id="in-progress-count">0</i>
+                        <div class="status">
+                            <span class="status--value">IN-PROGRESS</span>
+                            <span class="title"> Task </span>
+                        </div>
+                        <span class="card-detail">"Believe you can."
+                        </span>
+                    </div>
+                </div>
+                </div>
+            </div>
+                </div>
+            <!--TABULAR DATA-->
+                <div class="tabular--wrapper">
+                    <h3 class="main--title">Recently Added Tasks</h3>
+                    <!-- The table body for tasks -->
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Deadline</th>
+                                    <th>Priority Level</th>
+                                    <th>Status</th>
+                                    <th colspan="2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="task-table-body">
+                                <!-- Rows will be dynamically added here -->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+           </div>
+    </div>
+
+     <!-- JavaScript for sidebar functionality -->
+     <script src="js/dashboard.js"></script>
+        <!-- JavaScript for fetching and displaying tasks -->
+    <!-- <script>
+        let pending = document.getElementById('pending-count');
+        let completed =  document.getElementById('completed-count');
+        let inProgress = document.getElementById('in-progress-count');
+
+        async function fetchTasks() {
+            try {
+                console.log(localStorage.getItem('Token'));
+               
+                const response = await fetch('http://localhost:8080/api/tasks/get-all-task', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('Token') // assuming you are storing JWT in localStorage
+                    }
+                });
+                const tasks = await response.json();
+                console.log("tasks", tasks);
+                let pendingCount = 0;
+                let completedCount = 0;
+                let inProgressCount = 0;
+                const taskTableBody = document.getElementById('task-table-body');
+                taskTableBody.innerHTML = '';
+
+                tasks.forEach(taskDto => {
+                    const task = taskDto.taskResponseInfo;
+                    let statusClass = '';
+                    if (task.status === 'PENDING') pendingCount++;
+                    else if (task.status === 'COMPLETED') completedCount++;
+                    else if (task.status === 'IN_PROGRESS') inProgressCount++;
+
+                    const row = `
+                        <tr>
+                            <td>${task.title}</td>
+                            <td>${task.description}</td>
+                            <td>${task.deadline}</td>
+                            <td>${task.priorityLevel}</td>
+                            <td>${task.status}</td>
+                            <td><a href="editTask.html?taskId=${task.id}" class="edit--btn">Edit</a></td>
+                            <td><a  href="javascript:void(0);" class="delete--btn" onclick="deleteTask('${task.id}')">Delete</a></td>
+                        </tr>
+                    `;
+                    taskTableBody.insertAdjacentHTML('beforeend', row);
+                    
+                });
+
+               pending.textContent = pendingCount;
+               completed.textContent = completedCount;
+                inProgress.textContent = inProgressCount;
+
+            } catch (error) {
+                console.error('Error fetching tasks:', error);
+            }
+
+        }
+
+        async function deleteTask(taskId) {
+        if (confirm('Are you sure you want to delete this task?')) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/tasks/delete-task/${taskId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('Token') // Assuming token is stored in localStorage
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to delete task');
+                }
+
+                // After deleting, re-fetch tasks to update the table
+                fetchTasks();
+
+                alert('Task deleted successfully!');
+            } catch (error) {
+                console.error('Error deleting task:', error);
+                alert('Error deleting task. Please try again.');
+            }
+        }
+    }
+
+        async function logout() {
+            try {
+                const response = await fetch('http://localhost:8080/api/auth/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('Token')
+                    }
+                });
+
+                        if (!response.ok) {
+                            throw new Error('Failed to logout');
+                        }
+
+                // Clear local storage and redirect to login page
+                localStorage.removeItem('Token');
+                alert('Logged out successfully!');
+                window.location.href = '/auth/login.html';
+            } catch (error) {
+                console.error('Error logging out:', error);
+                alert('Error logging out. Please try again.');
+            }
+        }
+        
+        async function fetchUserProfile() {
+            try {
+                const response = await fetch('http://localhost:8080/api/user/profile', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('Token')
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user profile');
+                }
+
+                const userProfile = await response.json();
+                console.log("user profile", userProfile);
+                updateWelcomeMessage(userProfile.userProfileResponseInfo.firstName); // Update welcome message with user's first name
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+                // Handle error
+            }
+        }
+
+        function updateWelcomeMessage(firstName) {
+            const welcomeMessage = document.querySelector('.welcome-message');
+            if (welcomeMessage) {
+                welcomeMessage.textContent = `Welcome ${firstName}!`;
+            }
+        }
+
+    document.addEventListener('DOMContentLoaded', () => {
+            // Check if token exists in localStorage
+            if (!localStorage.getItem('Token')) {
+                // Redirect to login page if token is missing
+                window.location.href = '/auth/login.html';
+                return;
+            }
+
+            fetchUserProfile();
+            fetchTasks();
+            document.getElementById('logout-button').addEventListener('click', logout);
+        });
+    </script> -->
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Check if token exists in localStorage
+    if (!localStorage.getItem('Token')) {
+        // Redirect to login page if token is missing
+        window.location.href = '/auth/login.html';
+        return;
+    }
+
+    const spinner = document.getElementById('spinner');
+    const mainContent = document.querySelector('.sub-main--content');
+
+    // Fetch user profile and tasks
+    Promise.all([fetchUserProfile(), fetchTasks()])
+        .then(() => {
+            // Hide spinner
+            spinner.style.display = 'none';
+            // Display main content
+            mainContent.style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            // Handle error if needed
+            spinner.style.display = 'none'; // Hide spinner on error as well
+            // Optionally show an error message or retry button
+        });
+
+    document.getElementById('logout-button').addEventListener('click', logout);
+});
+
+async function fetchTasks() {
+    try {
+        const response = await fetch('http://localhost:8080/api/tasks/get-all-task', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('Token') // assuming you are storing JWT in localStorage
+            }
+        });
+        const tasks = await response.json();
+        console.log("tasks", tasks);
+        let pendingCount = 0;
+        let completedCount = 0;
+        let inProgressCount = 0;
+        const taskTableBody = document.getElementById('task-table-body');
+        taskTableBody.innerHTML = '';
+
+        tasks.forEach(taskDto => {
+            const task = taskDto.taskResponseInfo;
+            let statusClass = '';
+            if (task.status === 'PENDING') pendingCount++;
+            else if (task.status === 'COMPLETED') completedCount++;
+            else if (task.status === 'IN_PROGRESS') inProgressCount++;
+
+            const row = `
+                <tr>
+                    <td>${task.title}</td>
+                    <td>${task.description}</td>
+                    <td>${task.deadline}</td>
+                    <td>${task.priorityLevel}</td>
+                    <td>${task.status}</td>
+                    <td><a href="editTask.html?taskId=${task.id}" class="edit--btn">Edit</a></td>
+                    <td><a  href="javascript:void(0);" class="delete--btn" onclick="deleteTask('${task.id}')">Delete</a></td>
+                </tr>
+            `;
+            taskTableBody.insertAdjacentHTML('afterbegin', row);
+        });
+
+        const pending = document.getElementById('pending-count');
+        const completed = document.getElementById('completed-count');
+        const inProgress = document.getElementById('in-progress-count');
+        pending.textContent = pendingCount;
+        completed.textContent = completedCount;
+        inProgress.textContent = inProgressCount;
+
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        // Handle error if needed
+    }
+}
+
+async function fetchUserProfile() {
+    try {
+        const response = await fetch('http://localhost:8080/api/user/profile', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('Token')
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user profile');
+        }
+
+        const userProfile = await response.json();
+        console.log("user profile", userProfile);
+        updateWelcomeMessage(userProfile.userProfileResponseInfo.firstName); // Update welcome message with user's first name
+
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        // Handle error if needed
+    }
+}
+
+function updateWelcomeMessage(firstName) {
+    const welcomeMessage = document.querySelector('.welcome-message');
+    if (welcomeMessage) {
+        welcomeMessage.textContent = `Welcome ${firstName}!`;
+    }
+}
+
+async function deleteTask(taskId) {
+    if (confirm('Are you sure you want to delete this task?')) {
+        try {
+            const response = await fetch(`http://localhost:8080/api/tasks/delete-task/${taskId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('Token') // Assuming token is stored in localStorage
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete task');
+            }
+
+            // After deleting, re-fetch tasks to update the table
+            fetchTasks();
+
+            alert('Task deleted successfully!');
+        } catch (error) {
+            console.error('Error deleting task:', error);
+            alert('Error deleting task. Please try again.');
+        }
+    }
+}
+
+async function logout() {
+    try {
+        const response = await fetch('http://localhost:8080/api/auth/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('Token')
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to logout');
+        }
+
+        // Clear local storage and redirect to login page
+        localStorage.removeItem('Token');
+        alert('Logged out successfully!');
+        window.location.href = '/auth/login.html';
+    } catch (error) {
+        console.error('Error logging out:', error);
+        alert('Error logging out. Please try again.');
+    }
+}
+
+  </script> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Check if token exists in localStorage
+    if (!localStorage.getItem('Token')) {
+        // Redirect to login page if token is missing
+        window.location.href = '/auth/login.html';
+        return;
+    }
+
+    const spinner = document.getElementById('spinner');
+    const mainContent = document.querySelector('.sub-main--content');
+    const taskSearchInput = document.getElementById('task-search-input');
+
+    // Fetch user profile and tasks
+    Promise.all([fetchUserProfile(), fetchTasks()])
+        .then(() => {
+            // Hide spinner
+            spinner.style.display = 'none';
+            // Display main content
+            mainContent.style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            // Handle error if needed
+            spinner.style.display = 'none'; // Hide spinner on error as well
+            // Optionally show an error message or retry button
+        });
+
+    document.getElementById('logout-button').addEventListener('click', logout);
+
+    taskSearchInput.addEventListener('input', () => {
+        const searchTerm = taskSearchInput.value.trim().toLowerCase();
+        filterTasks(searchTerm);
+    });
+});
+
+async function fetchTasks() {
+    try {
+        const response = await fetch('http://localhost:8080/api/tasks/get-all-task', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('Token') // assuming you are storing JWT in localStorage
+            }
+        });
+        const tasks = await response.json();
+        console.log("tasks", tasks);
+        displayTasks(tasks);
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        // Handle error if needed
+    }
+}
+
+function displayTasks(tasks) {
+    let pendingCount = 0;
+    let completedCount = 0;
+    let inProgressCount = 0;
+    const taskTableBody = document.getElementById('task-table-body');
+    taskTableBody.innerHTML = '';
+
+    tasks.slice(0, 5).forEach(taskDto => {
+        const task = taskDto.taskResponseInfo;
+        let statusClass = '';
+        if (task.status === 'PENDING') pendingCount++;
+        else if (task.status === 'COMPLETED') completedCount++;
+        else if (task.status === 'IN_PROGRESS') inProgressCount++;
+
+        const row = `
+            <tr>
+                <td>${task.title}</td>
+                <td>${task.description}</td>
+                <td>${task.deadline}</td>
+                <td>${task.priorityLevel}</td>
+                <td>${task.status}</td>
+                <td><a href="editTask.html?taskId=${task.id}" class="edit--btn">Edit</a></td>
+                <td><a href="javascript:void(0);" class="delete--btn" onclick="deleteTask('${task.id}')">Delete</a></td>
+            </tr>
+        `;
+        taskTableBody.insertAdjacentHTML('beforeend', row);
+    });
+
+    const pending = document.getElementById('pending-count');
+    const completed = document.getElementById('completed-count');
+    const inProgress = document.getElementById('in-progress-count');
+    pending.textContent = pendingCount;
+    completed.textContent = completedCount;
+    inProgress.textContent = inProgressCount;
+}
+
+function filterTasks(searchTerm) {
+    const rows = document.querySelectorAll('#task-table-body tr');
+
+    rows.forEach(row => {
+        const title = row.children[0].textContent.toLowerCase();
+        if (title.includes(searchTerm)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+async function fetchUserProfile() {
+    try {
+        const response = await fetch('http://localhost:8080/api/user/profile', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('Token')
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user profile');
+        }
+
+        const userProfile = await response.json();
+        console.log("user profile", userProfile);
+        updateWelcomeMessage(userProfile.userProfileResponseInfo.firstName); // Update welcome message with user's first name
+
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        // Handle error if needed
+    }
+}
+
+function updateWelcomeMessage(firstName) {
+    const welcomeMessage = document.querySelector('.welcome-message');
+    if (welcomeMessage) {
+        welcomeMessage.textContent = `Welcome ${firstName}!`;
+    }
+}
+
+async function deleteTask(taskId) {
+    if (confirm('Are you sure you want to delete this task?')) {
+        try {
+            const response = await fetch(`http://localhost:8080/api/tasks/delete-task/${taskId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('Token') // Assuming token is stored in localStorage
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete task');
+            }
+
+            // After deleting, re-fetch tasks to update the table
+            fetchTasks();
+
+            alert('Task deleted successfully!');
+        } catch (error) {
+            console.error('Error deleting task:', error);
+            alert('Error deleting task. Please try again.');
+        }
+    }
+}
+
+async function logout() {
+    try {
+        const response = await fetch('http://localhost:8080/api/auth/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('Token')
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to logout');
+        }
+
+        // Clear local storage and redirect to login page
+        localStorage.removeItem('Token');
+        alert('Logged out successfully!');
+        window.location.href = '/auth/login.html';
+    } catch (error) {
+        console.error('Error logging out:', error);
+        alert('Error logging out. Please try again.');
+    }
+}
+
+  </script>
+</body>
+</html>

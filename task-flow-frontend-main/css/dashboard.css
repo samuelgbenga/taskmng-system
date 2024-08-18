@@ -1,0 +1,457 @@
+/* Import Google Font cdn link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+    margin: 0;
+    padding:0;
+    border:none;
+    outline:none;
+    box-sizing:border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    display:flex;
+    min-height: 100vh; /* Ensure body takes full height of viewport */
+}
+
+.sidebar{
+    position:sticky;
+    top:0;
+    left:0;
+    bottom:0;
+    width:295px;
+    height:100vh; /*already here, full height of the viewport*/
+    padding:0 1.7rem;
+    color: #ffff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    /*background: rgba(113, 99, 186,255);
+    #00BFFF*/
+    background: rgba(0,191,255,0.5);
+    background:rgb(209, 240, 255);
+}
+.sidebar:hover{
+    /*width:295px;*/
+    transition:0.5s;
+}
+.logo{
+    height: 80px;
+    padding:16px;
+}
+.menu{
+    height:88vh;
+    position: relative;
+    list-style: none;
+    padding:0; 
+}
+
+.menu li{
+    padding: 0.5rem;
+    margin: 8px 0;
+    border-radius:8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu li:hover, .active{
+ background: #E5F7FF; /*lighter color*/
+}
+
+.menu a{
+    color: #005f8c; /*darker color*/
+    font-size:14px;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+   /* width: 100%;  added Ensure a tag expands to full width */
+}
+
+.menu a span{
+    overflow: hidden;
+    
+}
+
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.logout{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width:100%;
+}
+
+/*  MAIN CONTENT */
+
+.main--content{
+position:relative;
+background: #ebe9e9;
+width: calc(100% - 135px); /* added-Full width minus sidebar width */
+padding:1rem;
+}
+.header--wrapper img{
+    width:50px;
+    height:50px;
+    cursor:pointer;
+    border-radius:50%;
+}
+.welcome-message {
+    font-size: 1rem;
+    color: #005f8c;
+    font-weight: bold;
+    margin-left: 1rem; /* Adjust spacing */
+}
+
+.header--wrapper{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    background: #ffff;
+    border-radius: 10px;
+    padding:10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header--title{
+
+    color:#005f8c;
+
+}
+.user--info{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+}
+.search--box{
+    background: rgb(237,237,237);
+    border-radius: 15px;
+    color:#005f8c;
+    display:flex;
+    align-items: center;
+    gap:5px;
+    padding:4px 12px;
+    width:15rem;
+}
+
+.search--box input{
+    background:transparent;
+    padding:10px;
+}
+
+.search--box i{
+    font-size: 1.2rem;
+    cursor:pointer;
+    transition: all 0.5s ease-out;
+}
+
+.search--box i:hover{
+    transform: scale(1.2);
+}
+
+/* Card Container */
+.card{
+
+    background: #ffff;
+    padding:2rem;
+    border-radius:10px;
+}
+.card--container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card--wrapper{
+    display:flex;
+    justify-items: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.main--title{
+    color:#005f8c;
+    padding-bottom:10px;
+    font-size:15px;
+}
+.status--card{
+ background: rgb(299,223, 223);
+ border-radius:10px;
+ padding:1.2rem;
+ width:299px;
+ height:150px;
+ display:flex;
+ flex-direction: column;
+ justify-content: space-between;
+ transition: all 0.5s ease-in-out;
+}
+
+.status--card:hover{
+    transform: translateY(-5px);
+}
+.card--header{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.status{
+    display:flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+.title{
+    font-size: 12px;
+    font-weight: 200;
+    text-align: center;
+}
+.status--value{
+    font-size:24px;
+    font-family:"Courier New",Courier,monospace;
+    font-weight: 600;
+}
+.icon{
+    color:#fff;
+    padding:1rem;
+    height:60px;
+    width:60px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: red;
+}
+.card-detail{
+   font-size:9px; 
+   color:#777777;
+   letter-spacing: 1px;
+   font-family:"Courier New",Courier,monospace;
+}
+/* COLOR CSS */
+.light-red{
+    background: rgb(251,233,233);   
+}
+.light-purple{
+    background: rgb(254,226,254);
+}
+.light-green{
+    background: rgb(235,254, 235);
+}
+.light-blue{
+    background:rgb(236,236, 254);
+}
+.dark-red{
+    background:red;
+}
+
+.dark-purple{
+    background:purple;
+}
+.dark-green{
+    background:green;
+}
+.dark-blue{
+    background:blue;
+}
+
+/* TABULAR SECTION */
+
+.tabular--wrapper{
+    background:#ffff;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding:2rem;
+    overflow-x: auto;
+}
+
+.table-container{
+    width:100%;
+    overflow: auto;
+}
+table{
+   width:100%; 
+   border-collapse: collapse;
+}
+thead{
+    background: rgb(209, 240, 255);
+    
+    color:#005f8c;
+}
+
+th{
+   padding:15px; 
+   text-align: left; 
+}
+
+tbody{
+    background:#f2f2f2;
+}
+
+td{
+    padding:15px;
+    font-size:14px;
+    color: #333;
+}
+tr:nth-child(even){
+    background: #fff;
+}
+tfoot{
+    background: rgb(209, 240, 255);
+    font-weight:bold;
+    color:#fff;
+}
+tfoot td{
+ padding:15px;
+ color:#005f8c;
+}
+.table-container .edit--btn{
+    color:green;
+    background: none;
+    cursor:pointer;
+    text-decoration: none;
+}
+.table-container .delete--btn{
+    color:red;
+    background: none;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+/*NAVBAR FOR SMALLER SCREENS*/
+/* Hamburger menu styles */
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100; /* Ensure it's above sidebar */
+    cursor: pointer;
+    color: #005f8c;
+    font-size: 1.5rem;
+    display: none; /* Hidden by default on larger screens */
+}
+/* Sidebar styles */
+.navbar {
+    position: fixed;
+    left: -250px; /* Initially hidden */
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: rgba(0,191,255,0.9);
+    color: #005f8c;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.navbar.active {
+    left: 0;
+}
+
+.navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: rgb(0,191,255);
+}
+
+.navbar-header span {
+    font-size: 1.2rem;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    padding: 15px;
+    border-bottom: 1px solid #005f8c;
+    border-radius:8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.nav-menu li a {
+    color: #005f8c;
+    text-decoration: none;
+    font-size: 1rem;
+    display: block;
+}
+
+.nav-menu li a:hover {
+    border-radius:8px;
+    background: #E5F7FF;
+    padding-left: 20px;
+    transition: all 0.5s ease-in-out;
+}
+
+.close-icon {
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+
+
+
+/* Media queries for responsive design */
+@media(max-width:1149px){
+
+    .card--wrapper{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+}
+@media (max-width: 768px) {
+    
+    .user--info{
+        display:flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
+    .welcome-message{
+        margin-left:0;
+    }
+    .sidebar{
+        display:none;
+    }
+    .welcome-message{
+        display: block;
+    }
+    .search--box {
+        padding: 4px; /* Reduce padding */
+        width:15rem;
+    }
+
+    .search--box input {
+        font-size: 12px; /* Smaller font size */
+        padding: 8px; /* Adjust padding */
+    }
+    .main--content{
+        width:100%;
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger menu on smaller screens */
+    }
+
+    .main--content {
+        margin-left: 50px; /* Make space for the hamburger menu */
+    }
+
+   /* .main--content.shifted {
+        margin-left: 250px; /* Move content to the right when sidebar opens 
+    }*/
+
+    .navbar.active .close-icon {
+        display: block;
+    }
+
+    .navbar.active .hamburger-menu {
+        display: none;
+    }
+}
+

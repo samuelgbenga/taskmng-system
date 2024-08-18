@@ -1,0 +1,103 @@
+/* Base Styles */
+.main-table-container{
+    background-color: white;
+    padding:20px;
+    border-radius: 10px; 
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #00BFFF;
+    color: #fff;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #D1F0FF;
+    color: #005f8c;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.edit-btn {
+    background-color: #00BFFF;
+    color: #fff;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: #fff;
+}
+
+.btn {
+    width: 15%;
+    padding: 0.75rem;
+    background-color: #00BFFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    display: block;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background-color: #005f8c;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #005f8c;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .filter-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .edit-btn, .delete-btn {
+        padding: 3px 5px;
+        font-size: 0.8rem;
+    }
+    
+}

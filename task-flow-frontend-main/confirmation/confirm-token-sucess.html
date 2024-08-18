@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation</title>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="success" class="center hidden">
+        <h1>EMAIL CONFIRMED SUCCESSFULLY, LOGIN <a href="/auth/login.html">HERE</a></h1>
+    </div>
+    <div id="failure" class="center hidden">
+        <h1>EMAIL CONFIRMATION FAILED. PLEASE TRY AGAIN.</h1>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get('token');
+
+            if (token) {
+                fetch(`http://localhost:8080/api/auth/confirm?token=${token}`, {
+                    method: 'GET',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Email confirmed successfully') {
+                        // document.getElementById('success').classList.remove('hidden');
+                        window.location.href = "../email-success.html"
+                    } else {
+                        // document.getElementById('failure').classList.remove('hidden');
+                        window.location.href = "../email-failed.html"
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('failure').classList.remove('hidden');
+                });
+            } else {
+                // document.getElementById('failure').classList.remove('hidden');
+                window.location.href = "../email-failed.html"
+
+
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Tasks</title>
+    <link rel="stylesheet" href="css/completed-tasks.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/side.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        /* Styles for the spinner */
+        .spinner {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .spinner i {
+            animation: spin 1s linear infinite; /* CSS animation for spinning */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <!-- Sidebar for large screens -->
+    <div class="sidebar">
+        <div class="logo">
+            <ul class="menu">
+                <li>
+                    <a href="dashboard.html"> 
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html"> 
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="addTask.html"> 
+                        <i class="fas fa-plus"></i>
+                        <span>Add Task</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="all-tasks.html"> 
+                        <i class="fas fa-tasks"></i>
+                        <span>All Tasks</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="completed-tasks.html"> 
+                        <i class="fas fa-check"></i>
+                        <span>Completed Tasks</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pending.html"> 
+                        <i class="fas fa-clock"></i>
+                        <span>Pending Tasks</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="in-progress.html"> 
+                        <i class="fas fa-spinner"></i>
+                        <span>In-progress</span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <a href="#"> 
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Navbar for small screens -->
+    <div class="navbar">
+        <div class="navbar-header">
+            <span>Menu</span>
+            <i class="fas fa-times close-icon"></i>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="addTask.html">Add Tasks</a></li>
+            <li><a href="all-tasks.html">All Tasks</a></li>
+            <li><a href="completed-tasks.html">Completed Tasks</a></li>
+            <li><a href="pending.html">Pending Tasks</a></li>
+            <li><a href="in-progress.html">In-Progress Tasks</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- HEADER SECTION -->
+    <div class="main--content">
+        <!-- HEADER SECTION -->
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2>TaskFlow</h2>
+                <span>Dashboard</span>
+            </div>
+            <div class="user--info">
+                <!-- <div class="search--box">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Search"/>
+                </div> -->
+                <!-- <div class="welcome-message">
+                    Welcome!
+                </div> -->
+            </div>
+        </div>
+        <!-- COMPLETED TASKS TABLE -->
+        <div class="main-table-container">
+            <div id="spinner" class="spinner">
+                <i class="fas fa-spinner fa-spin"></i> Loading...
+            </div>
+            <div class="table-container" style="display: none;">
+                <table id="taskTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Deadline</th>
+                            <th>Priority Level</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if token exists in localStorage
+            if (!localStorage.getItem('Token')) {
+                // Redirect to login page if token is missing
+                window.location.href = '/auth/login.html';
+                return;
+            }
+
+            fetchCompletedTasks();
+            fetchUserProfile();
+            document.querySelector('.logout a').addEventListener('click', logout);
+        });
+
+        async function fetchUserProfile() {
+            try {
+                const response = await fetch('http://localhost:8080/api/user/profile', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('Token')
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user profile');
+                }
+
+                const userProfile = await response.json();
+                updateWelcomeMessage(userProfile.userProfileResponseInfo.firstName);
+
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+                // Handle error if needed
+            }
+        }
+
+        // Function to fetch completed tasks
+        async function fetchCompletedTasks() {
+            try {
+                const spinner = document.getElementById('spinner');
+                const tableContainer = document.querySelector('.table-container');
+                
+                spinner.style.display = 'block'; // Show spinner
+
+                const response = await fetch('http://localhost:8080/api/tasks/completed-task', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('Token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const tasks = await response.json();
+                    populateTable(tasks);
+                    spinner.style.display = 'none'; // Hide spinner
+                    tableContainer.style.display = 'block'; // Show table
+                } else {
+                    console.error('Failed to fetch tasks:', response.statusText);
+                    alert('Error fetching completed tasks. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function updateWelcomeMessage(firstName) {
+            const welcomeMessage = document.querySelector('.welcome-message');
+            if (welcomeMessage) {
+                welcomeMessage.textContent = `Welcome ${firstName}!`;
+            }
+        }
+
+        // Function to populate the table with tasks
+        function populateTable(tasks) {
+            const tableBody = document.querySelector('#taskTable tbody');
+            tableBody.innerHTML = '';
+
+            tasks.forEach(task => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${task.taskResponseInfo.title}</td>
+                    <td>${task.taskResponseInfo.description}</td>
+                    <td>${task.taskResponseInfo.deadline}</td>
+                    <td>${task.taskResponseInfo.priorityLevel}</td>
+                    <td>${task.taskResponseInfo.status}</td>
+                    <td>
+                        <a href="editTask.html?taskId=${task.taskResponseInfo.id}" class="edit-btn">Edit</a>
+                        <a href="javascript:void(0);" class="delete-btn" onclick="deleteTask(${task.taskResponseInfo.id})">Delete</a>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to delete a task (needs implementation on the backend)
+        async function deleteTask(id) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/tasks/delete-task/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('Token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    // Remove the task row from the table
+                    fetchCompletedTasks(); // Refresh the table after deletion
+                } else {
+                    console.error('Failed to delete task:', response.statusText);
+                    alert('Error deleting task. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function logout(event) {
+            event.preventDefault();
+            localStorage.removeItem('Token');
+            window.location.href = '/auth/login.html';
+        }
+    </script>
+</body>
+</html>

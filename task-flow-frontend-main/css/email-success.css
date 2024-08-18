@@ -1,0 +1,71 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.confirmation-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.confirmation-message i {
+    font-size: 4rem;
+    color: #00BFFF;
+    margin-bottom: 1rem;
+}
+
+.confirmation-message h2 {
+    margin-bottom: 1rem;
+    color: #005f8c;
+}
+
+.confirmation-message p {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.btn {
+    padding: 0.75rem;
+    background-color: #00BFFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #005f8c;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .confirmation-message i {
+        font-size: 3rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+}

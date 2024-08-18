@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/side.css">
+    
+    <link rel="stylesheet" href="css/task-detail.css">
+</head>
+<body>
+    <div class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+     <!-- Sidebar for large screens -->
+<div class="sidebar">
+    <div class="logo">
+        <ul class="menu">
+            <li class="active">
+                <a href="dashboard.html"> 
+                <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html"> 
+                   <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="create.html"> 
+                    <i class="fas fa-plus"></i>
+                    <span>Add Task</span>
+                </a>
+            </li>
+            <li>
+                <a href="completed-tasks.html"> 
+                    <i class="fas fa-check"></i>
+                    <span>Completed Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="pending-tasks.html"> 
+                    <i class="fas fa-clock"></i>
+                    <span>Pending Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="in-progress.html"> 
+                    <i class="fas fa-spinner"></i>
+                    <span>In-progress</span>
+                </a>
+            </li>
+            <li>
+                <a href="all-tasks.html"> 
+                    <i class="fas fa-tasks"></i>
+                    <span>All Tasks</span>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="#"> <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Navbar for small screens -->
+
+<div class="navbar">
+    <div class="navbar-header">
+        <span>Menu</span>
+        <i class="fas fa-times close-icon"></i>
+    </div>
+    <ul class="nav-menu">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="addTask.html">Add Tasks</a></li>
+        <li><a href="completed-tasks.html">Completed Tasks</a></li>
+        <li><a href="pending.html">Pending Tasks</a></li>
+        <li><a href="in-progress.html">In-Progress Tasks</a></li>
+        <li><a href="all-tasks.html">All Tasks</a></li>
+        <li><a href="#">Logout</a></li>
+    </ul>
+</div>
+
+    
+  <!-- HEADER SECTION -->
+  <div class="main--content">
+<!--HEADER SECTION-->
+   <div class="header--wrapper">
+    <div class="header--title">
+        <h2>TaskFlow</h2>
+        <span>Dashboard</span>
+    </div>
+    <div class="user--info">
+        <div class="search--box">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" placeholder="Search"/>
+    </div>
+    <div class="welcome-message">
+        Welcome Dami!
+    </div>
+    </div>
+</div>
+    <!--TASK DETAIL TABLE-->
+<div class="form-main-container">
+    <div class="task-detail-container">
+        <div class="task-detail-header">
+            <h2>Task Details</h2>
+            
+        </div>
+        <div class="task-detail-item">
+            <span>Title:</span>
+            <p>Build something</p>
+        </div>
+        <div class="task-detail-item">
+            <span>Description:</span>
+            <p>Build an expenses tracker</p>
+        </div>
+        <div class="task-detail-item">
+            <span>Deadline:</span>
+            <p>14/04/2024</p>
+        </div>
+        <div class="task-detail-item">
+            <span>Priority Level:</span>
+            <p>MEDIUM</p>
+        </div>
+        <div class="task-detail-item">
+            <span>Status:</span>
+            <p>Completed</p>
+        </div>
+        <div class="button-container">
+            <a href="editTask.html">Edit Task</a>
+        </div>
+    </div>
+</div>
+  </div>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
